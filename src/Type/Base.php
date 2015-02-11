@@ -69,16 +69,20 @@ abstract class Base{
 	public static function getTypeObject($dataType, $value) {
 		if ($value === null)
 			return null;
-		
+
+		if ($value instanceof \Cassandra\Type\Base) {
+			return $value;
+		}
+
 		switch($dataType) {
 			case self::BLOB:
 				return new Blob($value);
 			case self::TIMESTAMP:
-				if (is_double($value) && preg_match('~^\d{10}(.\d+)?$~', $value)) {
-					$value = (int)str_pad(substr(str_replace('.', '', $value), 0, 13), 13, '0');
-				} elseif (strlen($value) < 13) {
-					throw new Exception('Value of timestamp must have 13 digits.');
-				}
+				// if (is_double($value) && preg_match('~^\d{10}(.\d+)?$~', $value)) {
+				// 	$value = (int)str_pad(substr(str_replace('.', '', $value), 0, 13), 13, '0');
+				// } elseif (strlen($value) < 13) {
+				// 	throw new Exception('Value of timestamp must have 13 digits.');
+				// }
 				return new Timestamp($value);
 			case self::COUNTER:
 				return new Counter($value);
@@ -136,9 +140,10 @@ abstract class Base{
 							return new Blob($value);
 					}
 				}
-				trigger_error('Unknown type.');
+				debug($value);
+				throw new \Exception('Unknown type.');
 		}
-	
+
 		return '';
 	}
 }
