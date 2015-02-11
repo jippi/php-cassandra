@@ -1,22 +1,25 @@
 {
-	"name": "jippi/php-cassandra",
-	"description": "Cassandra client library for PHP, which support Protocol v3 and asynchronous request",
-	"minimum-stability": "stable",
-	"license": "MIT",
-	"authors": [
-		{
-			"name": "Shen Zhenyu",
-			"email": "zhenyupku@gmail.com"
-		},
-		{
-			"name": "Evseev Nikolay",
-			"email": "evseevnn@gmail.com"
-		}
-	],
-	"require": {
-		"php": ">=5.4.0"
-	},
-	"autoload": {
-		"psr-4": { "Cassandra\\": "src/" }
-	}
+  "name": "jippi/php-cassandra",
+  "description": "Cassandra client library for PHP, which support Protocol v3 and asynchronous request",
+  "minimum-stability": "stable",
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "Shen Zhenyu",
+      "email": "zhenyupku@gmail.com"
+    },
+    {
+      "name": "Evseev Nikolay",
+      "email": "evseevnn@gmail.com"
+    }
+  ],
+  "replace": {
+    "duoshuo/php-cassandra": "self.version"
+  },
+  "require": {
+    "php": ">=5.4.0"
+  },
+  "autoload": {
+    "psr-4": { "Cassandra\\": "src/" }
+  }
 }
